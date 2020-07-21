@@ -11,7 +11,7 @@
     <groupId>com.example</groupId>
     <artifactId>gateway</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gateway2</name>
+    <name>gateway</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -44,6 +44,11 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.12</version>
         </dependency>
     </dependencies>
 
