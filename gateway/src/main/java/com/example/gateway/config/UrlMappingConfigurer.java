@@ -16,37 +16,37 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UrlMappingConfigurer {
 
-//    @Bean
-//    public RouteLocator myRoutes(RouteLocatorBuilder builder, HttpBinConfigurer httpbin) {
-//        return builder.routes()
-//                .route(p -> p
-//                        .path("/get")
-//                        .filters(f -> f.addRequestHeader("Hello", "World"))
-//                        .uri(httpbin.getHost()))
-////                .route(p -> p //fallback for failing
-////                        .path("/delay/3")
-////                        .filters(f -> f.hystrix(config -> config
-////                                .setName("mycmd")
-////                                .setFallbackUri("forward:/fallback")))
-////                        .uri(httpbin.getHost()))
-//                .route(p -> p
-//                        .path("/delay/4")
-//                        .filters(f -> f.addRequestHeader("Hello", "World"))
-//                        .uri(httpbin.getHost()))
-////                .route(p -> p //match a scope of url
-////                        .path("/notes/*")
-////                        .filters(f -> f.addRequestHeader("Hello", "World"))
-////                        .uri("http://localhost:8081"))
-//                .build();
-//    }
     @Bean
-    public RouteLocator myRoutes(RouteLocatorBuilder builder,  @Value("${httpbin.host}") String host) {
+    public RouteLocator myRoutes(RouteLocatorBuilder builder, HttpBinConfigurer httpbin) {
         return builder.routes()
                 .route(p -> p
                         .path("/get")
                         .filters(f -> f.addRequestHeader("Hello", "World"))
-                        .uri(host))
+                        .uri(httpbin.getHost()))
+//                .route(p -> p //fallback for failing
+//                        .path("/delay/3")
+//                        .filters(f -> f.hystrix(config -> config
+//                                .setName("mycmd")
+//                                .setFallbackUri("forward:/fallback")))
+//                        .uri(httpbin.getHost()))
+                .route(p -> p
+                        .path("/delay/4")
+                        .filters(f -> f.addRequestHeader("Hello", "World"))
+                        .uri(httpbin.getHost()))
+//                .route(p -> p //match a scope of url
+//                        .path("/notes/*")
+//                        .filters(f -> f.addRequestHeader("Hello", "World"))
+//                        .uri("http://localhost:8081"))
                 .build();
     }
+//    @Bean
+//    public RouteLocator myRoutes(RouteLocatorBuilder builder,  @Value("${httpbin.host}") String host) {
+//        return builder.routes()
+//                .route(p -> p
+//                        .path("/get")
+//                        .filters(f -> f.addRequestHeader("Hello", "World"))
+//                        .uri(host))
+//                .build();
+//    }
 
 }
