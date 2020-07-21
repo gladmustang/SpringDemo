@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties (prefix="httpbin")
 public class HttpBinConfigurer {
-    private String host = "localhost";
+    private String host = "http://localhost";
 
     public String getHost() {
-        return host;
+        return this.host;
     }
 
     public void setHost(String host) {

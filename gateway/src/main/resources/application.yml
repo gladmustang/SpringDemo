@@ -1,7 +1,6 @@
 httpbin:
   host: http://httpbin.org:80
 
-
 spring:
   cloud:
     gateway:
