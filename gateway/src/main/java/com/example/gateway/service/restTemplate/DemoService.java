@@ -22,4 +22,10 @@ public class DemoService {
         return quote;
     }
 
+    public String getQuote2(){
+        String quote = restTemplate.getForObject(
+                "https://gturnquist-quoters.cfapps.io/api/random", String.class);
+        return quote;
+    }
+
 }

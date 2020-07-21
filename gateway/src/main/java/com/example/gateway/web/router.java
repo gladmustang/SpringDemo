@@ -1,6 +1,7 @@
 package com.example.gateway.web;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.gateway.object.Quote;
 import com.example.gateway.service.restTemplate.DemoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,18 @@ public class router {
     @RequestMapping("/demoService")
     public Quote demoCtl(){
         return demoService.getQuote();
+
+    }
+
+    @RequestMapping("/demoService2")
+    public JSONObject demoCtl2(){
+
+        String result = demoService.getQuote2();
+
+        JSONObject jsonObject = JSONObject.parseObject(result);
+        jsonObject.getJSONObject("value");
+
+        return jsonObject;
 
     }
 }
