@@ -1,0 +1,49 @@
+httpbin:
+  host: http://httpbin.org:80
+
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: path_route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/notes/*
+        - id: path_route_2
+          uri: http://localhost:8081
+          filters:
+            - name: CircuitBreaker    #CircuitBreaker or Hystrix
+              args:
+                name: demoCmd
+                fallbackUri: forward:/fallback
+          predicates:
+            - Path=/user/*
+        - id: path_route_3
+          uri: http://httpbin.org:80
+          filters:
+            - name: CircuitBreaker    #CircuitBreaker or Hystrix
+              args:
+                name: httpbinCmd
+                fallbackUri: forward:/fallback
+          predicates:
+            - Path=/delay/*
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2500
+    httpbinCmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000
+    demoCmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 1000
