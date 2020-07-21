@@ -1,6 +1,7 @@
 httpbin:
   host: http://httpbin.org:80
 
+
 spring:
   cloud:
     gateway:
@@ -46,3 +47,8 @@ hystrix:
         isolation:
           thread:
             timeoutInMilliseconds: 1000
+    demoService2:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
