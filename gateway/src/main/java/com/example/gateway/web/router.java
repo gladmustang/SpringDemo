@@ -6,6 +6,7 @@ import com.example.gateway.object.Quote;
 import com.example.gateway.service.restTemplate.DemoService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,8 @@ public class router {
     }
 
     @RequestMapping("/demoService")
-    public Quote demoCtl(){
+    public Quote demoCtl(ServerHttpRequest request){
+        System.out.println("Access request"+request.getRemoteAddress());
         return demoService.getQuote();
 
     }
