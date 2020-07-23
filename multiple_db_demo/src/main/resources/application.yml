@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  datasource:
+    master:
+      url: jdbc:postgresql://${postgres_host:localhost}:5432/${postgres_database:db_example}
+      username: ${postgres_username:postgres}
+      password: ${postgres_password:admin}
+    cluster:
+      - key: slave1
+        url: jdbc:postgresql://${postgres_host:localhost}:5432/${postgres_database:slave1}
+        username: ${postgres_username:postgres}
+        password: ${postgres_password:admin}
+      - key: slave2
+        url: jdbc:postgresql://${postgres_host:localhost}:5432/${postgres_database:slave2}
+        username: ${postgres_username:postgres}
+        password: ${postgres_password:admin}
