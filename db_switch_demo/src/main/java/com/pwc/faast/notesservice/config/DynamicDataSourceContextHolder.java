@@ -32,8 +32,14 @@ public class DynamicDataSourceContextHolder {
     }
 
     public static void setDataSourceRouterKey (String dataSourceRouterKey) {
-        logger.info("切换至{}数据源", dataSourceRouterKey);
-        HOLDER.set(dataSourceRouterKey);
+        if(containsDataSource(dataSourceRouterKey)) {
+            logger.info("切换至{}数据源", dataSourceRouterKey);
+            HOLDER.set(dataSourceRouterKey);
+        } else {
+            logger.info("数据源{}不存在, 无法切换", dataSourceRouterKey );
+            throw new RuntimeException("Error: Can not switch database to :" + dataSourceRouterKey);
+        }
+
     }
 
     /**
