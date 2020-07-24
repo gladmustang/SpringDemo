@@ -4,13 +4,16 @@ import lombok.Data;
 
 @Data
 public class DBInfo {
-    private String pGuid;
+    private String key;
     private String dbUrl;
     private String userName;
     private String password;
 
+    public DBInfo() {
+
+    }
     public DBInfo(String pGuid, String dbUrl, String userName, String password){
-        this.pGuid = pGuid;
+        this.key = pGuid;
         this.dbUrl = dbUrl;
         this.userName = userName;
         this.password = password;

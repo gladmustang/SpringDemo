@@ -1,0 +1,5 @@
+#add user
+# add to default db
+curl localhost:8080/user/add -d name=First -d email=someemail@someemailprovider.com
+# add to slave1 db
+curl localhost:8080/user/add/slave1 -d name=Slave1First -d email=someemail@someemailprovider.com

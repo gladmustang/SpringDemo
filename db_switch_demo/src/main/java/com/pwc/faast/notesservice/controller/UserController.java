@@ -2,10 +2,14 @@ package com.pwc.faast.notesservice.controller;
 
 
 import com.pwc.faast.notesservice.config.DynamicDataSourceContextHolder;
+import com.pwc.faast.notesservice.config.DynamicDataSourceCreator;
 import com.pwc.faast.notesservice.entity.User;
 import com.pwc.faast.notesservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.sql.DataSource;
+import java.util.LinkedHashMap;
 
 @RestController
 @RequestMapping(path="/user")
@@ -43,6 +47,15 @@ public class UserController {
 
     @GetMapping(path="/all/{database}")
     public Iterable<User> getAllUsers2(@PathVariable String database) {
+        if(!DynamicDataSourceContextHolder.containsDataSource(database)) {
+            LinkedHashMap<String, String> config = new LinkedHashMap();
+            config.put("key", database); //need to set pguid in future
+            config.put("url", "jdbc:postgresql://localhost:5432/"+database);
+            config.put("username", "postgres");
+            config.put("password", "admin");
+            DynamicDataSourceCreator.addNewDataSource(config);
+
+        }
         // This returns a JSON or XML with the users
         DynamicDataSourceContextHolder.setDataSourceRouterKey(database);
         return userRepository.findAll();

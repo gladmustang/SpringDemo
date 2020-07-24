@@ -33,4 +33,13 @@ public class DBConfig {
 
     }
 
+    public static void addNewIntoCluster (DBInfo dbinfo) {
+        LinkedHashMap<String, String> slave = new LinkedHashMap<>();
+        slave.put("key", dbinfo.getKey()); //need to set pguid in future
+        slave.put("url", dbinfo.getDbUrl());
+        slave.put("username", dbinfo.getUserName());
+        slave.put("password", dbinfo.getPassword());
+        cluster.add(slave);
+    }
+
 }
