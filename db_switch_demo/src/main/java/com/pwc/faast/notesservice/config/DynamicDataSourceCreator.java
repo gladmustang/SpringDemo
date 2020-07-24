@@ -15,7 +15,7 @@ import javax.sql.DataSource;
 import java.util.*;
 
 public class DynamicDataSourceCreator {
-    private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceRegister.class);
+    private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceCreator.class);
 
 
     /**
