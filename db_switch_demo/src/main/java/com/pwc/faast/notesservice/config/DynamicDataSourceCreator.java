@@ -36,7 +36,7 @@ public class DynamicDataSourceCreator {
      */
 //    private Map<String, DataSource> customDataSources = new HashMap<String, DataSource>();
     private static Map<Object, Object> customDataSources = new HashMap<>();
-    private static DynamicRoutingDataSource dataSource = new DynamicRoutingDataSource();
+    private static DynamicDataSource dataSource = new DynamicDataSource();
     /**
      * 参数绑定工具 springboot2.0新推出
      */
@@ -81,6 +81,7 @@ public class DynamicDataSourceCreator {
             String key = config.get("key").toString();
             customDataSources.put(key, consumerDatasource);
             // 数据源上下文，用于管理数据源与记录已经注册的数据源key
+
             DynamicDataSourceContextHolder.dataSourceIds.add(key);
             logger.info("注册数据源{}成功", key);
         }
@@ -95,11 +96,11 @@ public class DynamicDataSourceCreator {
         DataSource consumerDatasource = bind(clazz, defauleDataSourceProperties);
         // 获取数据源的key，以便通过该key可以定位到数据源
         String key = config.get("key").toString();
-        customDataSources.put(key, consumerDatasource);
         // 数据源上下文，用于管理数据源与记录已经注册的数据源key
         DynamicDataSourceContextHolder.dataSourceIds.add(key);
         logger.info("注册数据源{}成功", key);
-        dataSource.setTargetDataSources(customDataSources);
+        dataSource.addDataSource(key, consumerDatasource);
+
     }
 
 
