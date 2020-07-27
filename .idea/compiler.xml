@@ -7,11 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="db_switch_demo" />
-        <module name="multiple_db_demo" />
-        <module name="gateway2" />
-        <module name="gateway" />
         <module name="demo" />
+        <module name="gateway" />
+        <module name="db_switch_demo" />
+        <module name="gateway2" />
+        <module name="multiple_db_demo" />
+        <module name="jwtTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
       <module name="demo" target="1.8" />
       <module name="gateway" target="1.8" />
       <module name="gateway2" target="1.8" />
+      <module name="jwtTest" target="8" />
       <module name="multiple_db_demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -8,6 +8,7 @@ import com.pwc.faast.notesservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.util.LinkedHashMap;
 
@@ -17,6 +18,7 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired EntityManager em;
 
     @PostMapping(path="/add") // Map ONLY POST Requests
     public String addNewUser (@RequestParam String name
@@ -58,6 +60,7 @@ public class UserController {
         }
         // This returns a JSON or XML with the users
         DynamicDataSourceContextHolder.setDataSourceRouterKey(database);
+
         return userRepository.findAll();
     }
 }

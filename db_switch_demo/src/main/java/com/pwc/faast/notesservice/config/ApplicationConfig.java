@@ -91,6 +91,8 @@ class ApplicationConfig {
         Properties p= new Properties();
         //mapping to spring.jpa.properties.hibernate.dialect in application.yml
         p.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+//        p.put("hibernate.connection.charSet", "utf-8");
+//        p.put("hibernate.show_sql", "false");
         factory.setJpaProperties(p);
 //        DynamicDataSourceContextHolder.setDataSourceRouterKey("slave1");
         return factory;
