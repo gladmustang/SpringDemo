@@ -3,11 +3,6 @@ package com.demo.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.security.Keys;
-
-
-import javax.crypto.SecretKey;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.Base64;
@@ -41,7 +36,7 @@ public class JwtTokenUtil implements Serializable {
     }
     //for retrieveing any information from token we will need the secret key
     public Claims getAllClaimsFromToken(String token) {
-        return Jwts.parserBuilder().setSigningKey(getSecretKey()).build().parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder().setAllowedClockSkewSeconds(360000000).setSigningKey(getSecretKey()).build().parseClaimsJws(token).getBody();
 //        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
