@@ -2,16 +2,31 @@ package com.demo.jwt;
 
 import io.jsonwebtoken.Claims;
 
+import java.security.Security;
 import java.util.HashMap;
 
 public class Main {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws Exception {
+//        Security.setProperty("crypto.policy", "unlimited");
+        //to enable unlimited crypto
+        Crypto.fixKeyLength();
         Main main = new Main();
 //        main.testGenerateAndVeriry();
-        main.testFaastToken();
+//        Crypto.fixKeyLength();
+//        main.testFaastToken();
+          main.testCrypto();
 
     }
+
+    public void testCrypto() throws Exception {
+        String encryptptMessage = "2fc6c9bc071f4e7b8023d2b311da8e10";
+        String result = Crypto.decrypt(encryptptMessage);
+        System.out.println(result);
+        encryptptMessage =  "44f19f0da48ab8ab92b53c8744695d6c";
+        result = Crypto.decryptForNodejsDefault(encryptptMessage);
+        System.out.println(result);
+    }
+
 
     public void testFaastToken() {
         JwtTokenUtil jwtTokenUtil = new JwtTokenUtil();
@@ -21,7 +36,17 @@ public class Main {
         HashMap<String, Object> newClaims = new HashMap<>();
         claims.forEach((k,v)->{
             System.out.println(v);
-            newClaims.put(k,v);
+            if(v instanceof String) {
+                String newValue = null;
+                try {
+                    newValue = Crypto.decrypt((String) v);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                newClaims.put(k,newValue);
+            } else {
+                newClaims.put(k,v);
+            }
 
         });
         System.out.println(newClaims.toString());
