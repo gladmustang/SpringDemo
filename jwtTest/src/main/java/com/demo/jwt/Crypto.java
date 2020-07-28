@@ -44,15 +44,14 @@ public class Crypto {
 
     //aes-128/256-ecb
     public static String encrypt(String content) throws Exception {
-        byte[] input = content.getBytes(DEFAULT_CODING);
-
 //        MessageDigest md = MessageDigest.getInstance("MD5");
 //        byte[] thedigest = md.digest(password.getBytes(DEFAULT_CODING));
-        byte[] thedigest = input;
+        byte[] thedigest = password.getBytes(DEFAULT_CODING);
         SecretKeySpec skc = new SecretKeySpec(thedigest, "AES");
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, skc);
 
+        byte[] input = content.getBytes(DEFAULT_CODING);
         byte[] cipherText = new byte[cipher.getOutputSize(input.length)];
         int ctLength = cipher.update(input, 0, input.length, cipherText, 0);
         ctLength += cipher.doFinal(cipherText, ctLength);

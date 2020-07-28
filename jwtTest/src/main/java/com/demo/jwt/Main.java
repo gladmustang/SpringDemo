@@ -25,6 +25,10 @@ public class Main {
         encryptptMessage =  "44f19f0da48ab8ab92b53c8744695d6c";
         result = Crypto.decryptForNodejsDefault(encryptptMessage);
         System.out.println(result);
+
+        String text = Crypto.encrypt("Hello, world");
+        result = Crypto.decrypt(text);
+        System.out.println(result);
     }
 
 
