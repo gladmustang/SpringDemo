@@ -11,14 +11,18 @@
         <module name="gateway" />
         <module name="db_switch_demo" />
         <module name="reactive-demo" />
+        <module name="db_creation_test" />
+        <module name="entity_manager_test" />
         <module name="gateway2" />
         <module name="multiple_db_demo" />
         <module name="jwtTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="db_creation_test" target="1.8" />
       <module name="db_switch_demo" target="1.8" />
       <module name="demo" target="1.8" />
+      <module name="entity_manager_test" target="1.8" />
       <module name="gateway" target="1.8" />
       <module name="gateway2" target="1.8" />
       <module name="jwtTest" target="8" />
@@ -28,8 +32,10 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="db_creation_test" options="-parameters" />
       <module name="db_switch_demo" options="-parameters" />
       <module name="demo" options="-parameters" />
+      <module name="entity_manager_test" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gateway2" options="-parameters" />
       <module name="multiple_db_demo" options="-parameters" />

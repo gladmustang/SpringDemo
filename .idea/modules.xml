@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/db_creation_test/db_creation_test.iml" filepath="$PROJECT_DIR$/db_creation_test/db_creation_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/db_switch_demo/db_switch_demo.iml" filepath="$PROJECT_DIR$/db_switch_demo/db_switch_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/db_switch_demo/entity_manager_test.iml" filepath="$PROJECT_DIR$/db_switch_demo/entity_manager_test.iml" />
       <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/jwtTest/jwtTest.iml" filepath="$PROJECT_DIR$/jwtTest/jwtTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/multiple_db_demo/multiple_db_demo.iml" filepath="$PROJECT_DIR$/multiple_db_demo/multiple_db_demo.iml" />

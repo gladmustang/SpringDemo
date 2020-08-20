@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/../jwtTest/pom.xml" />
         <option value="$PROJECT_DIR$/jwtTest/pom.xml" />
         <option value="$PROJECT_DIR$/reactive-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/db_creation_test/pom.xml" />
       </list>
     </option>
   </component>
