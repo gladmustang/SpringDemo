@@ -9,12 +9,13 @@ import java.util.Map;
 public class DBConfig {
 
     public static LinkedHashMap<String, String> master = new LinkedHashMap<>();
-    public  static ArrayList<Map> cluster = new ArrayList<>();
+    public static ArrayList<Map> cluster = new ArrayList<>();
 
     public static void init() {
         initMaster();
         initCluster();
     }
+
     private static void initMaster() {
         master.put("key", "master");
         master.put("url", "jdbc:postgresql://localhost:5432/db_example");
@@ -33,7 +34,7 @@ public class DBConfig {
 
     }
 
-    public static void addNewIntoCluster (DBInfo dbinfo) {
+    public static void addNewIntoCluster(DBInfo dbinfo) {
         LinkedHashMap<String, String> slave = new LinkedHashMap<>();
         slave.put("key", dbinfo.getKey()); //need to set pguid in future
         slave.put("url", dbinfo.getDbUrl());

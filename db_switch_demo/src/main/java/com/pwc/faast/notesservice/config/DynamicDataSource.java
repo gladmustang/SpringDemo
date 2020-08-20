@@ -45,7 +45,7 @@ public class DynamicDataSource extends AbstractDataSource implements Initializin
     }
 
     public void setDataSourceLookup(@Nullable DataSourceLookup dataSourceLookup) {
-        this.dataSourceLookup = (DataSourceLookup)(dataSourceLookup != null ? dataSourceLookup : new JndiDataSourceLookup());
+        this.dataSourceLookup = (DataSourceLookup) (dataSourceLookup != null ? dataSourceLookup : new JndiDataSourceLookup());
     }
 
     public void afterPropertiesSet() {
@@ -71,9 +71,9 @@ public class DynamicDataSource extends AbstractDataSource implements Initializin
 
     protected DataSource resolveSpecifiedDataSource(Object dataSource) throws IllegalArgumentException {
         if (dataSource instanceof DataSource) {
-            return (DataSource)dataSource;
+            return (DataSource) dataSource;
         } else if (dataSource instanceof String) {
-            return this.dataSourceLookup.getDataSource((String)dataSource);
+            return this.dataSourceLookup.getDataSource((String) dataSource);
         } else {
             throw new IllegalArgumentException("Illegal data source value - only [javax.sql.DataSource] and String supported: " + dataSource);
         }
@@ -88,7 +88,7 @@ public class DynamicDataSource extends AbstractDataSource implements Initializin
     }
 
     public <T> T unwrap(Class<T> iface) throws SQLException {
-        return iface.isInstance(this) ? (T)this : this.determineTargetDataSource().unwrap(iface);
+        return iface.isInstance(this) ? (T) this : this.determineTargetDataSource().unwrap(iface);
     }
 
     public boolean isWrapperFor(Class<?> iface) throws SQLException {
@@ -98,7 +98,7 @@ public class DynamicDataSource extends AbstractDataSource implements Initializin
     protected DataSource determineTargetDataSource() {
         Assert.notNull(this.resolvedDataSources, "DataSource router not initialized");
         Object lookupKey = this.determineCurrentLookupKey();
-        DataSource dataSource = (DataSource)this.resolvedDataSources.get(lookupKey);
+        DataSource dataSource = (DataSource) this.resolvedDataSources.get(lookupKey);
         if (dataSource == null && (this.lenientFallback || lookupKey == null)) {
             dataSource = this.resolvedDefaultDataSource;
         }
@@ -119,7 +119,7 @@ public class DynamicDataSource extends AbstractDataSource implements Initializin
     public synchronized void addDataSource(Object key, Object value) {
         Object lookupKey = this.resolveSpecifiedLookupKey(key);
         DataSource dataSource = this.resolveSpecifiedDataSource(value);
-        if(resolvedDataSources.containsKey(lookupKey)) {
+        if (resolvedDataSources.containsKey(lookupKey)) {
             logger.info("数据库已经存在：{}", key);
         } else {
             this.resolvedDataSources.put(lookupKey, dataSource);

@@ -10,7 +10,6 @@ import javax.sql.DataSource;
 public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
 
 
-
     private static Logger logger = LoggerFactory.getLogger(DynamicRoutingDataSource.class);
 
     @Override

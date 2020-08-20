@@ -12,7 +12,8 @@ public class DBInfo {
     public DBInfo() {
 
     }
-    public DBInfo(String pGuid, String dbUrl, String userName, String password){
+
+    public DBInfo(String pGuid, String dbUrl, String userName, String password) {
         this.key = pGuid;
         this.dbUrl = dbUrl;
         this.userName = userName;

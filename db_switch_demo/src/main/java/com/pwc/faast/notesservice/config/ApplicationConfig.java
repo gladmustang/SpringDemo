@@ -61,6 +61,7 @@ class ApplicationConfig {
         RestTemplate restTemplate = new RestTemplate(requestFactory);
         return restTemplate;
     }
+
     @Bean
     public DataSource dataSource() {
         // in future call rest api to get projects info
@@ -88,7 +89,7 @@ class ApplicationConfig {
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(vendorAdapter);
         factory.setPackagesToScan("com.pwc.faast.notesservice.entity");
-        Properties p= new Properties();
+        Properties p = new Properties();
         //mapping to spring.jpa.properties.hibernate.dialect in application.yml
         p.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 //        p.put("hibernate.connection.charSet", "utf-8");

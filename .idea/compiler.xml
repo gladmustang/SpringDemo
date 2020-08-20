@@ -10,6 +10,7 @@
         <module name="demo" />
         <module name="gateway" />
         <module name="db_switch_demo" />
+        <module name="reactive-demo" />
         <module name="gateway2" />
         <module name="multiple_db_demo" />
         <module name="jwtTest" />
@@ -22,6 +23,7 @@
       <module name="gateway2" target="1.8" />
       <module name="jwtTest" target="8" />
       <module name="multiple_db_demo" target="1.8" />
+      <module name="reactive-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -31,6 +33,7 @@
       <module name="gateway" options="-parameters" />
       <module name="gateway2" options="-parameters" />
       <module name="multiple_db_demo" options="-parameters" />
+      <module name="reactive-demo" options="-parameters" />
     </option>
   </component>
 </project>

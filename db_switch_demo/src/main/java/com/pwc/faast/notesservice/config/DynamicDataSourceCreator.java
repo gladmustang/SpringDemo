@@ -37,11 +37,11 @@ public class DynamicDataSourceCreator {
 //    private Map<String, DataSource> customDataSources = new HashMap<String, DataSource>();
     private static Map<Object, Object> customDataSources = new HashMap<>();
     private static DynamicDataSource dataSource = new DynamicDataSource();
+
     /**
      * 参数绑定工具 springboot2.0新推出
      */
 //    private Binder binder = new Binder();
-
     public static DataSource createDynamicDataSource() {
         // 获取所有数据源配置
         Map config, defauleDataSourceProperties;
@@ -139,7 +139,7 @@ public class DynamicDataSourceCreator {
         binder.bind(ConfigurationPropertyName.EMPTY, Bindable.ofInstance(result));
     }
 
-    private static  <T extends DataSource> T bind(Class<T> clazz, Map properties) {
+    private static <T extends DataSource> T bind(Class<T> clazz, Map properties) {
         ConfigurationPropertySource source = new MapConfigurationPropertySource(properties);
         Binder binder = new Binder(new ConfigurationPropertySource[]{source.withAliases(aliases)});
         // 通过类型绑定参数并获得实例对象

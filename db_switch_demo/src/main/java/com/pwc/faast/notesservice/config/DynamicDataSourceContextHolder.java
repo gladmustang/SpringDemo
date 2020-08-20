@@ -14,7 +14,6 @@ import java.util.List;
 public class DynamicDataSourceContextHolder {
 
 
-
     private static Logger logger = LoggerFactory.getLogger(DynamicDataSourceContextHolder.class);
 
     /**
@@ -27,16 +26,16 @@ public class DynamicDataSourceContextHolder {
      */
     private static final ThreadLocal<String> HOLDER = new ThreadLocal<>();
 
-    public static String getDataSourceRouterKey () {
+    public static String getDataSourceRouterKey() {
         return HOLDER.get();
     }
 
-    public static void setDataSourceRouterKey (String dataSourceRouterKey) {
-        if(containsDataSource(dataSourceRouterKey)) {
+    public static void setDataSourceRouterKey(String dataSourceRouterKey) {
+        if (containsDataSource(dataSourceRouterKey)) {
             logger.info("切换至{}数据源", dataSourceRouterKey);
             HOLDER.set(dataSourceRouterKey);
         } else {
-            logger.info("数据源{}不存在, 无法切换", dataSourceRouterKey );
+            logger.info("数据源{}不存在, 无法切换", dataSourceRouterKey);
             throw new RuntimeException("Error: Can not switch database to :" + dataSourceRouterKey);
         }
 
@@ -45,7 +44,7 @@ public class DynamicDataSourceContextHolder {
     /**
      * 设置数据源之前一定要先移除
      */
-    public static void removeDataSourceRouterKey () {
+    public static void removeDataSourceRouterKey() {
         HOLDER.remove();
     }
 
@@ -55,7 +54,7 @@ public class DynamicDataSourceContextHolder {
      * @param dataSourceId
      * @return
      */
-    public static boolean containsDataSource(String dataSourceId){
+    public static boolean containsDataSource(String dataSourceId) {
         return dataSourceIds.contains(dataSourceId);
     }
 
