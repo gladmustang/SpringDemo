@@ -1,8 +1,10 @@
 package com.demo.jwt;
 
+import com.demo.jwt.crypt.Crypto;
+import com.demo.jwt.crypt.EncodeUtil;
 import io.jsonwebtoken.Claims;
 
-import java.security.Security;
+import java.util.Base64;
 import java.util.HashMap;
 
 public class Main {
@@ -14,8 +16,8 @@ public class Main {
 //        main.testGenerateAndVeriry();
 //        Crypto.fixKeyLength();
 //        main.testFaastToken();
-          main.testCrypto();
-
+//          main.testCrypto();
+            main.testProjectDBUrl();
     }
 
     public void testCrypto() throws Exception {
@@ -61,5 +63,12 @@ public class Main {
         String token = jwtTokenUtil.generateToken("admin");
         Claims claims= jwtTokenUtil.getAllClaimsFromToken(token);
         System.out.println(claims.toString());
+    }
+
+    public void testProjectDBUrl() throws Exception {
+        String encodedDBUrl = "NTM4ZTRmMmUwMjQ5NzIwMjA5NGNiNGE0NzcwMGRmMzg6ZjUwNTVlMmFlZmFlMmRiYmI4NGNlOWI4ZmYyMTczY2YzZjgwMzI4YTk0YjdkMTgyYmU2MWQwNmJhYmIzMTRlMTAwZWM1ODdiZDkxMGU4MjU3OTg0MjIyMmViMWQwMGY4NjNhNjkyZjJlMTc1NmY4M2UyZjU1NTZiOTI4MDMxZTIxOTZjMDY4M2Q0Yjk0ZDQwNWNhOGYzNmNmYmUwZTNiNzU2NzJmZWRhMGRmYjRkOTA4OGY2YTJhNzNhNjZmMzgzMDZhZmFmZTU0NTllYjJiMTBkMTQwMGNmNDZmYTg5ZWUwMDMyMGY4MTQ5MzBjYzUwNjc1ZGM5ZjE0OTVlMTBhNGNhMjhkODY2ZGUyMjY5ZTU0YTI2ZWQxNjY2YzNjNWVh";
+        String key256 = "2fAf&7#SV$XH&DQu+qcrq5HACAc6ZMnv";
+        String result = ProjectDBUtil.decryptDBUrl(encodedDBUrl, key256);
+        System.out.println(result);
     }
 }

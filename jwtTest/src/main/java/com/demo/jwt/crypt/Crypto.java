@@ -1,4 +1,4 @@
-package com.demo.jwt;
+package com.demo.jwt.crypt;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;

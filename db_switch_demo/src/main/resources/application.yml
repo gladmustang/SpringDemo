@@ -6,7 +6,7 @@ spring:
   #    properties:
   #      hibernate:
   #        dialect: org.hibernate.dialect.PostgreSQLDialect
-  datasource:
-    jdbc-url: jdbc:postgresql://${postgres_host:localhost}:5432/${postgres_database:slave1}
-    username: ${postgres_username:postgres}
-    password: ${postgres_password:admin}
+#  datasource:
+#    jdbc-url: jdbc:postgresql://${postgres_host:localhost}:5432/${postgres_database:slave1}
+#    username: ${postgres_username:postgres}
+#    password: ${postgres_password:admin}
