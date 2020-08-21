@@ -4,6 +4,7 @@ import com.demo.jwt.crypt.Crypto;
 import com.demo.jwt.crypt.EncodeUtil;
 import io.jsonwebtoken.Claims;
 
+import java.security.SecureRandom;
 import java.util.Base64;
 import java.util.HashMap;
 
@@ -17,7 +18,7 @@ public class Main {
 //        Crypto.fixKeyLength();
 //        main.testFaastToken();
 //          main.testCrypto();
-            main.testProjectDBUrl();
+            main.testProjectDBUrlEncrypt();
     }
 
     public void testCrypto() throws Exception {
@@ -66,9 +67,24 @@ public class Main {
     }
 
     public void testProjectDBUrl() throws Exception {
-        String encodedDBUrl = "NTM4ZTRmMmUwMjQ5NzIwMjA5NGNiNGE0NzcwMGRmMzg6ZjUwNTVlMmFlZmFlMmRiYmI4NGNlOWI4ZmYyMTczY2YzZjgwMzI4YTk0YjdkMTgyYmU2MWQwNmJhYmIzMTRlMTAwZWM1ODdiZDkxMGU4MjU3OTg0MjIyMmViMWQwMGY4NjNhNjkyZjJlMTc1NmY4M2UyZjU1NTZiOTI4MDMxZTIxOTZjMDY4M2Q0Yjk0ZDQwNWNhOGYzNmNmYmUwZTNiNzU2NzJmZWRhMGRmYjRkOTA4OGY2YTJhNzNhNjZmMzgzMDZhZmFmZTU0NTllYjJiMTBkMTQwMGNmNDZmYTg5ZWUwMDMyMGY4MTQ5MzBjYzUwNjc1ZGM5ZjE0OTVlMTBhNGNhMjhkODY2ZGUyMjY5ZTU0YTI2ZWQxNjY2YzNjNWVh";
-        String key256 = "2fAf&7#SV$XH&DQu+qcrq5HACAc6ZMnv";
+        String encodedDBUrl = "MDhlNWIzMDJlNWNlZGYzOTg1OTM2N2YyNGNiYWEyODg6ODIyMWI5ZTZjNTljZjdiNDcyNjZmYmM0ZDY3Mzg2N2FhYTMxN2IwZGI0MDM2ZTE4MDgzMmY2NDQwNTQzODYyYTk5MDYxNGM0ZmVjNmQ2ZGQyOTQ2YzgyMjk5M2FjZWEzNmQwMjFhODA3YWNkOWRkMzMzMmY1NjczYTI0Y2Y1ZTE";
+        String key256 = "abcdefghijklmnopqrstuvwxyz123456";
         String result = ProjectDBUtil.decryptDBUrl(encodedDBUrl, key256);
         System.out.println(result);
+    }
+
+    public void testProjectDBUrlEncrypt() {
+        try {
+            String dburl = "postgres://username:password@hostname:5432/dbname";
+            String key256 = "abcdefghijklmnopqrstuvwxyz123456";
+
+            String encodedDBUrl = ProjectDBUtil.encryptDBUrl(dburl,key256);
+            System.out.println(encodedDBUrl);
+            String decodedDBUrl = ProjectDBUtil.decryptDBUrl(encodedDBUrl, key256);
+            System.out.println(decodedDBUrl);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 }

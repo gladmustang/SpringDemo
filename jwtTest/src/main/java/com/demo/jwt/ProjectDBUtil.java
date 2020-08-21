@@ -2,6 +2,7 @@ package com.demo.jwt;
 
 import com.demo.jwt.crypt.EncodeUtil;
 
+import java.security.SecureRandom;
 import java.util.Base64;
 
 public class ProjectDBUtil {
@@ -26,6 +27,23 @@ public class ProjectDBUtil {
             throw new RuntimeException("decyprtDBurl error");
         }
 
+    }
 
+    public static String encryptDBUrl(String dbUrl, String key256) {
+        try {
+            byte[] iv = new byte[16];
+            new SecureRandom().nextBytes(iv);
+            byte[] contentbytes = dbUrl.getBytes();
+            String key256Hex = org.apache.commons.codec.binary.Hex.encodeHexString(key256.getBytes());
+            byte[] encryptbytes = EncodeUtil.aesEncryptToCBC(contentbytes,key256Hex,iv);
+            char[] encryptbytesHex =org.apache.commons.codec.binary.Hex.encodeHex(encryptbytes);
+            char[] ivHex =org.apache.commons.codec.binary.Hex.encodeHex(iv);
+            String encoded = new String(ivHex) + ":" + new String(encryptbytesHex);
+            final Base64.Encoder encoder = Base64.getEncoder();
+            return encoder.encodeToString(encoded.getBytes());
+        } catch(Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("encryptDBUrl error");
+        }
     }
 }
